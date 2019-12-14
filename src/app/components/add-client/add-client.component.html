@@ -1,0 +1,53 @@
+
+<div class="row">
+  <div class="col-md-6">
+    <h1>New Client</h1>
+  </div>
+  <div class="col-md-6 text-right">
+    <a routerLink="/" class="btn btn-link">
+      <i class="fa fa-arrow-left"></i> Back to list
+    </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 mx-auto">
+   
+  <div class="form-group">
+     
+    <img width="200" height="100" [src]="previewFile" alt="" *ngIf="previewFile">
+
+    <label for="image">Image</label>
+    <input #image="ngModel" ngModel (change)="previewImage($event)" type="file" name="image" id="image">
+  </div>  
+
+  <form #f="ngForm" (submit)="addClient(f)">
+    <div class="form-group">
+      <label for="firstName">firstName</label>
+      <input ngModel name="firstName" id="firstName" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="lastName">lastName</label>
+      <input ngModel name="lastName" id="lastName" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="telephone">telephone</label>
+      <input ngModel name="telephone" id="telephone" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="email">email</label>
+      <input [ngClass]="{'is-invalid': email.touched && email.invalid}" required ngModel #email="ngModel" name="email" id="email" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="balance">balance</label>
+      <input [ngClass]="{'is-invalid': balance.touched && balance.invalid}" ngModel #balance="ngModel" required name="balance" id="balance" type="number" class="form-control">
+    </div>
+
+    <button class="btn btn-primary btn-block" [disabled]="reload">
+      <span *ngIf="reload"> <i class="fa fa-spinner fa-spin"></i>   </span>
+      <span *ngIf="!reload"><i class="fa fa-send"></i> New Client</span>
+      
+    </button>
+  </form>
+  </div>
+</div>
